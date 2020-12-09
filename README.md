@@ -4,11 +4,11 @@ El presente repositorio contiene los datos de capacidad hospitalaria divulgados 
 [https://www.gits.igg.unam.mx/red-irag-dashboard/reviewHome#](https://www.gits.igg.unam.mx/red-irag-dashboard/reviewHome#)
 
 ## Datos
-Los datos descargados están en la carpeta `data/`. 
+Los datos descargados están en la carpeta [`data/`](https://github.com/RodrigoZepeda/CapacidadHospitalariaMX/tree/master/data). 
 
 ## Descarga de datos via chromedriver
 
-Si deseas descargar los datos por ti misma, el archivo `Descarga_Resumen.py` contiene el webscrapper para entrar al portal y bajar los datos de manera automática. Para hacerlo es necesario que tengas `chromedriver` ([descarga aquí](https://chromedriver.chromium.org)) y GoogleChrome o Chromium. Dentro del archivo es necesario que cambies las primeras líneas:
+Si deseas descargar los datos por ti misma, el archivo `descarga_datos.py` contiene el webscrapper para entrar al portal y bajar los datos de manera automática. Para hacerlo es necesario que tengas `chromedriver` ([descarga aquí](https://chromedriver.chromium.org)) y GoogleChrome o Chromium. Dentro del archivo es necesario que cambies las primeras líneas:
 
 ```python
 folder_of_download = "/Users/rod/Dropbox/ 3DashboardCONACYT/data"
