@@ -13,13 +13,13 @@ from selenium import webdriver
 from selenium.webdriver.support.select import Select
 import time
     
-
-sleep_time    = 10
-download_time = 2   
+ 
 folder_of_download = "/Users/rod/Dropbox/DashboardCONACYT/data"
 direccion_chromedriver = '/Users/rod/Dropbox/DashboardCONACYT/chromedriver'
 descargar_desde = "2020-04-01"
 descargar_hasta = "2020-04-05"
+sleep_time    = 10 #Tiempo que tarda la página de la UNAM de cambiar ventana
+download_time = 2  #Tiempo que tarda en descargarse el archivo en tu red
 
 """
 #Funcion para obtener las tarjetas de resumen
