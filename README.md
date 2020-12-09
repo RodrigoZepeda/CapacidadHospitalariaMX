@@ -10,7 +10,7 @@ Los datos descargados están en la carpeta `data/`.
 
 Si deseas descargar los datos por ti misma, el archivo `Descarga_Resumen.py` contiene el webscrapper para entrar al portal y bajar los datos de manera automática. Para hacerlo es necesario que tengas `chromedriver` ([descarga aquí](https://chromedriver.chromium.org)) y GoogleChrome o Chromium. Dentro del archivo es necesario que cambies las primeras líneas:
 
-```{python}  
+```python
 folder_of_download = "/Users/rod/Dropbox/ 3DashboardCONACYT/data"
 direccion_chromedriver = '/Users/rod/Dropbox/DashboardCONACYT/chromedriver'
 descargar_desde = "2020-04-01"
