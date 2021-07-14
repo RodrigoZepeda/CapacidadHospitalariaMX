@@ -1,0 +1,156 @@
+---
+title: Modeling the effect of Mexico's traffic light system for COVID-19 in hospital
+  bed capacity
+author: "Rodrigo Zepeda-Tello y Valeria Pérez-Chávez"
+date: '2021'
+output:
+  html_document: default
+  pdf_document: default
+bibliography: references.bib
+csl: elsevier-vancouver.csl
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Introduction
+
+Quantifying the impact of non-pharmaceutical interventions (NPI) for COVID-19 
+containment is crucial to help governments and decision makers improve their 
+pandemic response. Globally, there have been several attempts to quantify the effect of NPI [@haug2020ranking; @liu2021impact; @patino2020non] with mobility restrictions and stay-at-home requirements resulting in reductions on the basic reproductive number. Specifically, for Mexico, [@flores2021estimating] have evaluated the effect of lockdown and vaccinations while [@acuna2020modeling; @tocto2020lockdown] have built compartmental models that theorize upon the potential effect of lockdown without assessing the effect of the containment measures actually implemented in the country.  
+
+Probably one of the most well known measures implemented in Mexico is the [traffic light system, _Semáforo COVID_](https://coronavirus.gob.mx/semaforo/) [@semaforo]. This system combines the estimated COVID-19 incidence, its basic reproductive number, mortality and hospitalization rates for COVID-19, as well as the weekly bed capacity, test positivity and the current trend in incidence, mortality and hospitalizations to create an index that quantifies the risk level for each of the 32 states of the country. Each value of the index is associated with one of the following colors which are organized according to risk: green (lowest), yellow, orange and red (highest). Accompanying each color, there is a series of recommended NPI for states to implement. Each state decides which measures should be implemented with only a few (such as reopening of schools) being decided on a federal level. Quantification of the index is done every two weeks with results being presented on Friday and the accompaning measures implemented the Monday after. 
+
+_Semáforo COVID_ was first implemented June 1st 2020 in the context of the _Nueva Normalidad_ (New Normality) stage of the pandemic after a national lockdown period that spanned from April 21 to May 31. Under _Nueva Normalidad_ a safe return to work and other activities was prioritized. It is in this context that quantifying the effect of the _Semáforo_ becomes of primary importance as most interventions are decided upon this system. To do so, we implemented a beta time series regression that models and predicts hospital bed capacity as a function of the previous capacity and the traffic light system. Such methods have been previously implemented in relation to respiratory illness to measure the incidence of influenza [@guolo2014beta] and, during the pandemic, to model hospital bed capacity in Spain [@jannes2020beta]. Our model builds upon these articles by adding the estimation of a causal effect via structural time series thus answering the question: _How does Semáforo COVID influence bed capacity?_. 
+
+
+## Methods
+
+In order to predict hospital bed capacity we first built a web scrapper that
+downloads the daily information from the [IRAG dashboard](https://www.gits.igg.unam.mx/red-irag-dashboard/reviewHome). 
+This website presents, for every state in the country, the percentage of 
+hospital bed capacity on a daily basis. Secondly, we obtained the weekly
+traffic light colors implemented for each state of Mexico from: [https://github.com/claudiodanielpc/covid19/blob/master/semaforo_covidmx.csv](https://github.com/claudiodanielpc/covid19/blob/master/semaforo_covidmx.csv). The information from this repository is manually obtained on a weekly basis from the Health Secretariat's public 
+communications. Finally, we fitted a Bayesian beta regression adjusted by state, 
+traffic light, and seasonality to model and predict future percentages. 
+
+### Data
+
+#### Hospital bed capacity
+
+State-level hospital bed capacity was scrapped from the severe acute respiratory infections (SARI) dashboard at [https://www.gits.igg.unam.mx/red-irag-dashboard/reviewHome](https://www.gits.igg.unam.mx/red-irag-dashboard/reviewHome). The dashboard, a collaboration between the Health Secretariat and the National University, UNAM, aggregates information from the SARI network information system (_Sistema de Información de la Red IRAG_) on a daily basis. _Red IRAG_ represents a sentinel surveillance system which concentrates information on SARI cases from several health institutions which, starting March 2020, are legally binded to keep the information updated [@dof; @guiaops]. 
+
+Data was available for all days starting April 1st 2020 excepting May 2nd 2021 and June 11th 2021. To fit the model, we linearly interpolated those days using the previous and the next day as reference.  
+
+The web scrapper that downloads the website's information was built on Python 3.6 @python . The code is available at [our Github repository](https://github.com/RodrigoZepeda/CapacidadHospitalariaMX/tree/master/scripts). 
+
+#### Traffic light information
+
+Since the start of the pandemic, [the covid19 Github repository]([https://github.com/claudiodanielpc/covid19/blob/master/semaforo_covidmx.csv](https://github.com/claudiodanielpc/covid19/blob/master/semaforo_covidmx.csv)) of user \@claudiodanielpc has kept a registry of the traffic light colors implemented per state. To guarantee the accuracy of the information, we independently verified a random sample of $n = 10$ weeks against the press releases of the Health Secretariat. All data in the repository coincided with the Secretariat's.       
+
+
+### Model
+
+### Traffic light model
+Using Bayesian methods, we implemented a time series beta regression [@jara2013time] that predicts the future hospital bed capacity  as a function of previous hospitalization, some seasonal factors, the traffic light color, and the state. The model is thus of the form:
+\begin{equation}
+\text{Bed Capacity (%)} = \text{State effect} + 
+\text{Seasonal effect} + \text{Traffic light effect} +
+\text{Previous Bed Capacity (%)} + \text{Previous Errors}
+\end{equation}
+
+Specifically, for a percentage of hospital bed capacity, $p_{s,t}$ at state $s$ and time $t$ we define the logit transformation of the mean hospital bed capacity percent $\mu_{s,t}$ for state $s$ as:
+\begin{equation}
+\begin{aligned}
+\text{logit}(\mu_{s,t}) & = \alpha_s + \sum\limits_{i = 1}^{r}\big[ a_{s,i} \cdot \sin( 2\pi t i / 365) + b_{s,i} \cdot \cos( 2\pi t i / 365)\big] + \sum\limits_{j = 1}^p \lambda_k \cdot \text{logit}( p_{s,t-j} ) \\
+& \quad + \sum\limits_{k = 1}^{q} \varphi_k \cdot \epsilon_{s,t-k} + \sum\limits_{k = h_{min}}^{h_{max}} \sum\limits_{c \in \text{Colors}} \eta_{c, k - h_{min}} \cdot \mathbb{I}_{c}(k-h_{min}\cdot t)
+\end{aligned}
+\end{equation}
+where $\epsilon_{s,t}$ represents the error term at time $t$; that is:
+\begin{equation}
+\begin{aligned}
+\epsilon_{s,t-l} & = \text{logit}(p_{s,t-l}) - \bigg[ \alpha_s + \sum\limits_{i = 1}^{r}\big[ a_{s,i} \cdot \sin( 2\pi (t-l) i / 365) + b_{s,i} \cdot \cos( 2\pi (t-l) i / 365) \big] + \sum\limits_{j = 1}^p \lambda_k \cdot \text{logit}( p_{s,(t-l) - j} ) \\
+& \quad + \sum\limits_{k = h_{min}}^{h_{max}} \sum\limits_{c \in \text{Colors}} \eta_{c, k - h_{min}} \cdot \mathbb{I}_{c}(k-h_{min})  + \sum\limits_{k = 1}^{q} \varphi_k \cdot \epsilon_{s,(t-l) - k} \bigg],
+\end{aligned}
+\end{equation}
+with $\epsilon_{s,t} = 0$ for $t = 1, 2, \dots, q$. The set $\text{Colors}$ contains all possible traffic lights: $\text{Colors} = \{\text{Green}, \text{Yellow}, \text{Orange}, \text{Red}\}$, and $\mathbb{I}_{c}(\tau)$ is the indicator variable for color $c$ at time $\tau$, that is:
+\begin{equation}
+\mathbb{I}_{c}\big(\tau) = \begin{cases}
+0 & \text{ if traffic light color on day } \tau \text{ is not }c,\\
+1 & \text{ if traffic light color on day } \tau \text{ is }c.
+\end{cases}
+\end{equation}
+Finally, $\eta_{c, w}$ stands for the effect of traffic light color of week $w$ on bed capacity where we have restricted:
+\begin{equation}
+\eta_{\text{Red}, w} \leq \eta_{\text{Orange}, w} \leq \eta_{\text{Yellow}, w} \leq \eta_{\text{Green}, k - w} \leq 0.
+\end{equation}
+The percentage of hospital bed capacity, $p_{s,t}$, is assumed to be beta 
+distributed: 
+\begin{equation}
+\begin{aligned}
+p_{s,t} \sim \textrm{Beta}(\mu_{s,t}, \kappa)
+\end{aligned}
+\end{equation}
+where the beta distribution has the parametrization given by @cribari2010beta:
+\begin{equation}
+f(x) = \dfrac{\Gamma (\kappa)}{\Gamma(\mu  \kappa) \Gamma\big((1 - \mu)\cdot \kappa \big)} x^{\mu\cdot \kappa - 1} (1 - x)^{(1 - \mu)\cdot \kappa - 1}.
+\end{equation}
+This is defined for $0 < x < 1$ with $0 < \mu < 1$ representing the distribution's mean and $\phi > 0$ being a precision parameter inversely proportional to the variance. 
+
+The prior distributions for our model are given by: 
+\begin{equation}
+\begin{aligned}
+\alpha_s & \sim  \textrm{Normal}\big(\mu_{\text{State}},\sigma_{\text{State}}\big),
+\end{aligned}
+\end{equation}
+
+
+We fitted the model using Markov Chain Monte Carlo simulations via the No-U-Turn Sampling (NUTS) algorithm [@gelman2013bayesian]. Convergence was assessed through 
+the Gelman Rubin diagnostic test [@gelman1992inference]. Simulations were 
+conducted via the `Stan` interface for `R`: `CmdStan` [@cmdstanr; @carpenter2017stan; @Rstats]. 
+
+### Prediction model
+
+We adapted the previous model to generate long term predictions by incorporating the traffic light's uncertainty into the error term. The model is thus of the form:
+\begin{equation}
+\text{Bed Capacity (%)} = \text{State effect} + 
+\text{Seasonal effect} + 
+\text{Previous Bed Capacity (%)} + \text{Previous Errors}
+\end{equation}
+Where the logit transformation of the average bed capacity is given by:
+\begin{equation}
+\begin{aligned}
+\text{logit}(\mu_{s,t}) & = \alpha_s + \sum\limits_{i = 1}^{r}\big[ a_{s,i} \cdot \sin( 2\pi t i / 365) + b_{s,i} \cdot \cos( 2\pi t i / 365)\big] + \sum\limits_{j = 1}^p \lambda_k \cdot \text{logit}( p_{s,t-j} ) + \sum\limits_{k = 1}^{q} \varphi_k \cdot \epsilon_{s,t-k} 
+\end{aligned}
+\end{equation}
+The error terms are as in the previous model without the color effect. Finally, we also assumed that the percentage of hospital bed capacity, $p_{s,t}$, is beta 
+distributed: 
+\begin{equation}
+\begin{aligned}
+p_{s,t} \sim \textrm{Beta}(\mu_{s,t}, \kappa)
+\end{aligned}
+\end{equation}
+Prior distributions, model fitting and convergence assessment are the same as before. 
+
+<!--
+### Evaluation
+-->
+
+#### Live predictions
+
+Predictions from the model are updated weekly at [https://rodrigozepeda.github.io/CapacidadHospitalariaMX/](https://rodrigozepeda.github.io/CapacidadHospitalariaMX/) and will continue to be updated as long as the [IRAG dashboard](https://www.gits.igg.unam.mx/red-irag-dashboard/reviewHome) is maintained.
+
+<!--
+## Results
+
+Figura 1 de las grafiquitas de todo mundo y se discute mínimo y máximo así como 
+aquellos estados con mayor ocupación / menor. 
+
+Tabla 1 efectos del semáforo por estado
+
+## Discussion 
+-->
+
+## References

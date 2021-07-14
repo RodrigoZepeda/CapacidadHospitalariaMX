@@ -1,0 +1,30 @@
+/* Input field */
+.select2-selection__rendered { 
+    color: #2B3E50;
+ }
+    
+/* Around the search field */
+.select2-search { 
+    color: #2B3E50;
+ }
+    
+/* Each result */
+.select2-results { 
+    color: #2B3E50;
+ }
+    
+/* Higlighted (hover) result */
+.select2-results__option--highlighted { 
+    background-color: #DE6A2A !important;
+ }
+    
+/* Selected option */
+.select2-results__option[aria-selected=true] { 
+    color: #2B3E50;
+ }
+
+ .main img {
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+}

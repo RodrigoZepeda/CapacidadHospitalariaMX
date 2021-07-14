@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+
+    <!-- Developed by Rodrigo Zepeda -->
+    <!-- MIT LICENSE
+        Copyright 2021 Rodrigo Zepeda
+        Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+        associated documentation files (the "Software"), to deal in the Software without restriction,
+        including without limitation the rights to use, copy, modify, merge, publish, distribute,
+        sublicense, and/or sell copies of the Software, and to permit persons to whom the Software
+        is furnished to do so, subject to the following conditions:
+        The above copyright notice and this permission notice shall be included in all copies or substantial
+        portions of the Software.
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+        INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+        PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+        DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+    -->
+
+    <meta name="theme-color" content="#4285f4">
+    <meta name="description" content="Proyecciones de capacidad hospitalaria para México">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="CapacidadHospitalariaMX, Hospitales, México, Proporción de hospitalizados, Capacidad hospitalaria, Porcentaje de ocupación, COVID, SARS-COV-2">
+    <meta name="author" content="Rodrigo Zepeda Tello">
+
+    <meta name="twitter:card" content="summary"><!-- required -->
+    <meta name="twitter:site" content="@CapacidadHospitalariaMX"><!-- required -->
+    <meta name="twitter:title" content="Capacidad Hospitalaria MX"><!-- required -->
+    <meta name="twitter:description" content="Predicciones del % de ocupación hospitalaria de la red IRAG"><!-- optional -->
+    <meta name="twitter:image" content="https://github.com/RodrigoZepeda/CapacidadHospitalariaMX/blob/master/docs/images/CapacidadHospitalariaLogoDark.png"><!-- optional -->
+    <meta name="twitter:image:alt" content="Logo"><!-- optional -->
+    
+    <meta property="og:title" content="Capacidad Hospitalaria MX" />
+    <meta property="og:url" content="https://rodrigozepeda.github.io/CapacidadHospitalariaMX/" />
+    <meta property="og:description" content="Predicciones del % de ocupación hospitalaria de la red IRAG">
+    <meta property="og:image" content="https://github.com/RodrigoZepeda/CapacidadHospitalariaMX/blob/master/docs/images/CapacidadHospitalariaLogoDark.png">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/android-chrome-512x512.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/android-chrome-192x192.png">
+    
+    
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+
+    <title>CapacidadHospitalariaMX</title>
+    <!-- <link rel="shortcut icon" href="http://www.imss.gob.mx/sites/all/statics/favicon.ico" type="image/vnd.microsoft.icon">-->
+    <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/lib/xor128.min.js"></script>
+
+    <!--jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!--Plotting-->
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script  src="script/plot.js" type = "text/javascript"></script>
+
+    <!-- Select2 -->
+    <link href="styles/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@1.5.2/dist/select2-bootstrap4.min.css">
+    <script src="script/select2.min.js"></script>
+    <script src="script/auxiliary_functions.js" type = "text/javascript"></script>
+    <link href="styles/custom.css" rel="stylesheet" />
+
+
+</head>
+
+<body>
+    
+    <!--<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <a class="navbar-brand" href="https://github.com/RodrigoZepeda/CapacidadHospitalariaMX">CapacidadHospitalariaMX</a>
+    </nav>-->
+
+    <main role="main">
+        <div class="container-fluid content-row">
+        <div class="row justify-content-evenly">
+            <div class="col-lg-3">
+                <div class="card w-100 min-vh-100 mt-1">
+                    <img class = "mt-3 p-2" src="images/CapacidadHospitalariaLogo.png" alt="Logo de CapacidadHospitalariaMX">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="estados">Estado</label>
+                            <select class="estados form-control" name="estados" id = "estados">
+                                <option value="AGS">Aguascalientes</option>
+                                <option value="BC">Baja California</option>
+                                <option value="BCS">Baja California Sur</option>
+                                <option value="CAM">Campeche</option>
+                                <option value="COAH">Coahuila de Zaragoza</option>
+                                <option value="COL">Colima</option>
+                                <option value="CHIS">Chiapas</option>
+                                <option value="CHIH">Chihuahua</option>
+                                <option value="CDMX" selected='selected'>Ciudad de México</option>
+                                <option value="DUR">Durango</option>
+                                <option value="GTO">Guanajuato</option>
+                                <option value="GUE">Guerrero</option>
+                                <option value="HGO">Hidalgo</option>
+                                <option value="JAL">Jalisco</option>
+                                <option value="MEX">México</option>
+                                <option value="MICH">Michoacán de Ocampo</option>
+                                <option value="MOR">Morelos</option>
+                                <option value="NAY">Nayarit</option>
+                                <option value="NL">Nuevo León</option>
+                                <option value="OAX">Oaxaca</option>
+                                <option value="PUE">Puebla</option>
+                                <option value="QUE">Querétaro</option>
+                                <option value="QROO">Quintana Roo</option>
+                                <option value="SLP">San Luis Potosí</option>
+                                <option value="SIN">Sinaloa</option>
+                                <option value="SON">Sonora</option>
+                                <option value="TAB">Tabasco</option>
+                                <option value="TAM">Tamaulipas</option>
+                                <option value="TLAX">Tlaxcala</option>
+                                <option value="VER">Veracruz de Ignacio de La Llave</option>
+                                <option value="YUC">Yucatán</option>
+                                <option value="ZAC">Zacatecas</option>
+                            </select>
+                        </div>
+                        <div class="card border-primary mb-3">
+                            <div class="card-body">
+                                <p><b>Aviso</b><br>
+                                    Lo que aquí mostramos son 
+                                    los escenarios que nosotros consideramos los más posibles; sin embargo, como cualquier cosa donde
+                                    interviene el azar y el comportamiento humano, el resultado final puede ser distinto a lo modelado.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card border-light mb-3">
+                            <div class="card-body">
+                                <p><b>Descargas</b><br>
+                                    <a href="https://github.com/RodrigoZepeda/CapacidadHospitalariaMX/blob/master/predictions/PREDICCIONES_HOSP.pdf" class="card-link">Descarga de gráficas</a>
+                                    <a href="https://github.com/RodrigoZepeda/CapacidadHospitalariaMX/blob/master/predictions/Predichos.csv" class="card-link">Descarga de datos</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <a href="https://github.com/RodrigoZepeda/CapacidadHospitalariaMX">@CapacidadHospitalariaMX</a> por Rodrigo Zepeda-Tello y Valeria Pérez-Chávez.
+                    </div>
+                </div>                  
+            </div>
+            <div class="col-lg-9">
+                <div class="card w-100 min-vh-100 mt-1">
+                    <div class="card-body">
+                        <h5 class="card-title">Escenarios a largo plazo de capacidad hospitalaria a partir de la RED−IRAG</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Modelo Beta−Bayesiano | Github:  <a href="https://github.com/RodrigoZepeda/CapacidadHospitalariaMX">@CapacidadHospitalariaMX</a> | Datos de  <a href="https://www.gits.igg.unam.mx/red-irag-dashboard/reviewHome">https://www.gits.igg.unam.mx/red-irag-dashboard/reviewHome</a></h6>
+                        <div id = "plot" class = "mt-3"></div>
+                    </div>
+                    <div class="card-footer text-muted">
+                        * Predicciones después de 30 días (línea vertical) son sólo escenarios.<br>
+                        **Los escenarios representan el camino más probable dado nuestro conocimiento actual de la pandemia. 
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+    </main>
+</body>
+</html>
