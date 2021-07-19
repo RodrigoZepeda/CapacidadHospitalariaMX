@@ -56,7 +56,7 @@ hospitalizaciones_match_estados <- hospitalizaciones %>% select(Estado) %>%
 PHosp <- (hospitalizaciones %>% select(-Estado) %>% as.matrix()) 
 
 #Caracter?sticas del modelo 
-chains = 4; iter_warmup = 250; nsim = 500; pchains = 4; 
+chains = 4; iter_warmup = 1000; nsim = 2000; pchains = 4; 
 datos  <- list(p = 14, q = 1, r = 2,
                dias_predict = 150,
                ndias = ncol(PHosp) , nestados = nrow(PHosp), PHosp = PHosp,
