@@ -56,8 +56,8 @@ hospitalizaciones_match_estados <- hospitalizaciones %>% select(Estado) %>%
 PHosp <- (hospitalizaciones %>% select(-Estado) %>% as.matrix()) 
 
 #Caracter?sticas del modelo 
-chains = 4; iter_warmup = 1000; nsim = 2000; pchains = 4; 
-datos  <- list(p = 5, q = 5, r = 2,
+chains = 4; iter_warmup = 250; nsim = 500; pchains = 4; 
+datos  <- list(p = 14, q = 1, r = 2,
                dias_predict = 150,
                ndias = ncol(PHosp) , nestados = nrow(PHosp), PHosp = PHosp,
                sigma_mu_hiper = 0.1, sigma_kappa_hiper = 50, mu_phi_prior = 0,
@@ -76,13 +76,9 @@ initf2 <- function(chain_id = 1) {
        sigma_estado = rnorm(1,2.2,1) %>% abs(),
        mu           = rnorm(1,0,1) %>% abs(),
        sigma        = rnorm(1,1,1) %>% abs(),
-       beta_1s      = rnorm(nrow(PHosp)),
-       beta_1c      = rnorm(nrow(PHosp)),
-       beta_2s      = rnorm(nrow(PHosp)),
-       beta_2c      = rnorm(nrow(PHosp)),
        mu_time      = rnorm(1,0.02,0.01),
        kappa_alpha  = rnorm(nrow(PHosp), 0, 0.1),
-       kappa_beta  = rnorm(nrow(PHosp), 0, 0.1),
+       kappa_beta   = rnorm(nrow(PHosp), 0, 0.1),
        sigma_time   = abs(rnorm(1,0.10,0.01))
   )}
 
@@ -107,6 +103,7 @@ model_sample <- hosp_model$sample(data = datos, chains = chains,
                                   seed = 47, 
                                   iter_warmup = iter_warmup,
                                   adapt_delta = 0.95, 
+                                  max_treedepth = 2^(14),
                                   iter_sampling = nsim - iter_warmup,
                                   init = init_ll,
                                   output_dir = "cmdstan",                                  
