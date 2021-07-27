@@ -60,7 +60,7 @@ PHosp <- (hospitalizaciones %>% select(-Estado) %>% as.matrix())
 #Caracter?sticas del modelo 
 #p = 17; q = 1
 chains = 4; iter_warmup = 250; nsim = 500; pchains = 4; 
-datos  <- list(p = 20, q = 1, r = 2,
+datos  <- list(p = 30, q = 1, r = 2,
                dias_predict = 150,
                ndias = ncol(PHosp) , nestados = nrow(PHosp), PHosp = PHosp,
                sigma_mu_hiper = 0.1, sigma_kappa_hiper = 50, mu_phi_prior = 0,
