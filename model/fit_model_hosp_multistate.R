@@ -120,7 +120,7 @@ model_sample$save_object(file = "model_fit1.rds")
 #Correr el modelo
 
 #Guardamos las simulaciones por si las dudas
-#modelo_ajustado <- readRDS("model_fit1.rds")
+#model_sample <- readRDS("model_fit1.rds")
 modelo_ajustado <- summarise_draws(model_sample$draws(), 
                                    ~ quantile(., probs = c(0.005, 0.025, 0.05, 
                                                            0.125, 0.25, 0.325,0.4, 0.5,
@@ -199,14 +199,14 @@ all_states <- ggplot(Hosp, aes(x = Fecha)) +
         axis.ticks = element_line(color = "gray85", size = 2),
         axis.line = element_line(color = "gray85", size = 2)) 
 
-all_states +
-  ggsave(paste0("predictions/Hosp_predict_v2.pdf"), width = 30, height = 10)
+  ggsave(paste0("predictions/Hosp_predict_v2.pdf"), width = 30, height = 10,
+         plot = all_states)
 
-all_states +
-  ggsave(paste0("predictions/AllStates.png"), width = 30, height = 10)
+  ggsave(paste0("predictions/AllStates.png"), width = 30, height = 10,
+         plot = all_states)
 
 for (estado in unique(Hosp$Estado)){
-  Hosp %>% filter(Estado == !!estado) %>%
+  edo_plot <- Hosp %>% filter(Estado == !!estado) %>%
     ggplot(aes(x = Fecha)) +
     geom_ribbon(aes(ymin = `0.5%`, ymax = `99.5%`, fill = "99%"), alpha = 1) +
     geom_ribbon(aes(ymin = `5%`, ymax = `95%`, fill = "90%"), alpha = 1) +
@@ -252,8 +252,10 @@ for (estado in unique(Hosp$Estado)){
           panel.background = element_rect(fill = "#515D6B"),
           plot.background = element_rect(fill = "#515D6B"),
           axis.ticks = element_line(color = "gray85", size = 2),
-          axis.line = element_line(color = "gray85", size = 2)) +
-    ggsave(paste0("predictions/Hosp_predict_v2",estado,".pdf"), width = 14, height = 8)
+          axis.line = element_line(color = "gray85", size = 2)) 
+    ggsave(paste0("predictions/Hosp_predict_v2",estado,".pdf"), width = 14, height = 8,
+           plot = edo_plot)
 }
 
 if (file.exists("predictions/PREDICCIONES_HOSP.pdf")){file.remove("predictions/PREDICCIONES_HOSP.pdf")}
+  
