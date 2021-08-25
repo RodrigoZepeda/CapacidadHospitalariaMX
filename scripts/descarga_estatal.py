@@ -39,7 +39,7 @@ if datetime.strptime(descargar_desde,'%Y-%m-%d') <= datetime.strptime(descargar_
     
     folder_of_download = os.getcwd() + "/raw/estatal"
     sleep_time    = 15 #Tiempo que tarda la página de la UNAM de cambiar ventana
-    download_time = 2  #Tiempo que tarda en descargarse el archivo en tu red
+    download_time = 5  #Tiempo que tarda en descargarse el archivo en tu red
     estatal = True    #Poner como true si quieres datos estatales; como false si quieres clues pero aún no funciona el false
     
     
@@ -78,7 +78,7 @@ if datetime.strptime(descargar_desde,'%Y-%m-%d') <= datetime.strptime(descargar_
     
     #Avance para cuantificar
     avance = 0
-    
+
     for fecha_analisis in fechas_descargar:
             
         print("Descargando " + str(100*avance/len(fechas_descargar)) + "%")
