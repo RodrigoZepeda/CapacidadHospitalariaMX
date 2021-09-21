@@ -19,3 +19,4 @@ Hosp_predict_v3.pdf
 *.exe
 .idea/
 *threads
+.Rproj.user

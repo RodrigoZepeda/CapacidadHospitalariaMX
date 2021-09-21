@@ -1,6 +1,5 @@
 ---
-title: Modeling the effect of Mexico's traffic light system for COVID-19 in hospital
-  bed capacity
+title: Predicting Mexico's hospital bed capacity for COVID-19
 author: "Rodrigo Zepeda-Tello y Valeria Pérez-Chávez"
 date: '2021'
 output:
