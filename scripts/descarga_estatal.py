@@ -46,6 +46,7 @@ if datetime.strptime(descargar_desde,'%Y-%m-%d') <= datetime.strptime(descargar_
     option = webdriver.ChromeOptions()
     option.add_argument('--disable-gpu')  # Last I checked this was necessary.
     option.add_argument("-incognito")
+    option.add_argument("--headless")
     
     option.add_experimental_option("prefs", {
             "download.default_directory": folder_of_download,
