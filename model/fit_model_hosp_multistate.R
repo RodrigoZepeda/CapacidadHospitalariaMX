@@ -1,17 +1,8 @@
 rm(list = ls())
 set.seed(2342)
+pacman::p_load(readr, tidyverse, posterior, lubridate, ggplot2,
+               rstan, zoo, cmdstanr, viridis, bayestestR)
 
-library(readr)
-library(tidyverse)
-library(posterior) #remotes::install_github("stan-dev/posterior")
-library(lubridate)
-library(dplyr)
-library(ggplot2)
-library(rstan)
-library(zoo)
-library(cmdstanr)
-library(viridis)
-library(bayestestR)
 
 #Dejar como NULL si quieres usar el compilador default
 compiler_path_cxx <- "/usr/local/opt/llvm/bin/clang++"
