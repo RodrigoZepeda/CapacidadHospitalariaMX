@@ -10,6 +10,12 @@ El presente repositorio contiene los datos de capacidad hospitalaria divulgados 
 ## Datos
 Los datos descargados sin procesar están en la carpeta [`raw/`](https://github.com/RodrigoZepeda/CapacidadHospitalariaMX/tree/master/data) mientras que la base de datos única procesada está en [`processed/HospitalizacionesMX_estatal.rds`](https://github.com/RodrigoZepeda/CapacidadHospitalariaMX/tree/master/processed/HospitalizacionesMX_estatal.rds)
 
+## Apariciones
+
+Se han usado en [Serendipia](https://serendipia.digital/covid-19/ocupacion-hospitalaria-en-mexico-5-entidades-superan-80/). 
+
+Si usas este repositorio en algo, ¡avísame para ponerlo aquí!
+
 ## Predicciones
 
 ![Predicciones de ocupación hospitalaria](predictions/AllStates.png)
