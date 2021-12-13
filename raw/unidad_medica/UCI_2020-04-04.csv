@@ -1,11 +1,3 @@
-"Unidad médica","Estado","Institución","CLUES","% de Ocupación"
-"Instituto Nacional de Enfermedades Respiratorias Ismael Cosío Villegas","Ciudad de México","SSA/CC","DFSSA004026","100"
-"Instituto Nacional de Ciencias Médicas Y Nutrición Salvador Zubirán","Ciudad de México","SSA/CC","DFSSA004055","100"
-"Hospital Juárez de México","Ciudad de México","SSA/CC","DFSSA003944","89"
-"Hospital General de México","Ciudad de México","SSA/CC","DFSSA003973","50"
-"Hospital Regional de Alta Especialidad Ixtapaluca","México","SSA/CC","MCSSA018786","29"
-"Instituto Nacional de Rehabilitación","Ciudad de México","SSA/CC","DFSSA003956","23"
-"Instituto Nacional de Pediatría","Ciudad de México","SSA/CC","DFSSA004014","20"
-"Hospital Regional de Alta Especialidad del Bajío","Guanajuato","SSA/CC","GTSSA016796","8"
-"Hospital Regional de Alta Especialidad de Oaxaca","Oaxaca","SSA/CC","OCSSA007483","0"
-"Instituto Nacional de Cancerología","Ciudad de México","SSA/CC","DFSSA004043","0"
+version https://git-lfs.github.com/spec/v1
+oid sha256:2a730fbee4c0122b75b4645a40214f567f30eb32241381b887abd0f2de19cd7f
+size 992
