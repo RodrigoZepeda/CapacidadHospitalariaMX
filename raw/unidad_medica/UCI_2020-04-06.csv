@@ -1,3 +1,11 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:b36eddec601005f8deef82084af0b46d376ef6d426d5d573339f61f305be96ee
-size 1004
+"Unidad médica","Estado","Institución","CLUES","% de Ocupación"
+"Instituto Nacional de Ciencias Médicas Y Nutrición Salvador Zubirán","Ciudad de México","SSA/CC","DFSSA004055","100"
+"Instituto Nacional de Enfermedades Respiratorias Ismael Cosío Villegas","Ciudad de México","SSA/CC","DFSSA004026","94"
+"Hospital Juárez de México","Ciudad de México","SSA/CC","DFSSA003944","72"
+"Instituto Nacional de Pediatría","Ciudad de México","SSA/CC","DFSSA004014","25"
+"Instituto Nacional de Rehabilitación","Ciudad de México","SSA/CC","DFSSA003956","25"
+"Hospital Regional de Alta Especialidad Ixtapaluca","México","SSA/CC","MCSSA018786","23"
+"Hospital Regional de Alta Especialidad del Bajío","Guanajuato","SSA/CC","GTSSA016796","8"
+"Instituto Nacional de Cancerología","Ciudad de México","SSA/CC","DFSSA004043","0"
+"Hospital General Dr. Manuel Gea González","Ciudad de México","SSA/CC","DFSSA003961","0"
+"Hospital Regional de Alta Especialidad de Oaxaca","Oaxaca","SSA/CC","OCSSA007483","0"
