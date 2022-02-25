@@ -1,4 +1,7 @@
 # CapacidadHospitalariaMX
+
+> **Nota** a partir del 25 de febrero del 2022 los datos se actualizan diario a las 3am.
+
 ![Capacidad Hospitalaria MX](docs/images/CapacidadHospitalariaLogoDark.png)
 
 Para ir al sitio web: [https://rodrigozepeda.github.io/CapacidadHospitalariaMX](https://rodrigozepeda.github.io/CapacidadHospitalariaMX/index)
@@ -9,6 +12,7 @@ El presente repositorio contiene los datos de capacidad hospitalaria divulgados 
 
 ## Datos
 Los datos descargados sin procesar están en la carpeta [`raw/`](https://github.com/RodrigoZepeda/CapacidadHospitalariaMX/tree/master/data) mientras que la base de datos única procesada está en [`processed/HospitalizacionesMX_estatal.rds`](https://github.com/RodrigoZepeda/CapacidadHospitalariaMX/tree/master/processed/HospitalizacionesMX_estatal.rds)
+
 
 ## Apariciones
 
@@ -54,6 +58,20 @@ python3 scripts/descarga_estatal.py "2021-01-01"
 ```
 
 **Ojo** Te recomiendo ir de 20 en 20 días porque si no arroja error. 
+
+## Automatización de la descarga
+
+En Linux puedes usar un `crontab` como sigue:
+
+```bash
+00 03 * * * export DISPLAY=:0 && /bin/sh /directorio/a/CapacidadHospitalariaMX/download_only.sh > /dev/null 2>&1
+```
+
+para saber qué número de display tienes:
+
+```bash
+env | grep 'DISPLAY'
+```
 
 ## Limpieza de datos
 
