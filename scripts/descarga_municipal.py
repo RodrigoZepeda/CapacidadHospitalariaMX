@@ -16,7 +16,7 @@ import time
 from datetime import date, timedelta
 from datetime import datetime
 
-direccion_chromedriver = '/usr/local/bin/chromedriver'
+direccion_chromedriver = '/usr/bin/chromedriver'
 
 #Case for windows
 if os.name == 'nt':
