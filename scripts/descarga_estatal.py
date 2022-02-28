@@ -38,7 +38,7 @@ if datetime.strptime(descargar_desde,'%Y-%m-%d') <= datetime.strptime(descargar_
     
     
     folder_of_download = os.getcwd() + "/raw/estatal"
-    sleep_time    = 60 #Tiempo que tarda la página de la UNAM de cambiar ventana
+    sleep_time    = 90 #Tiempo que tarda la página de la UNAM de cambiar ventana
     download_time = 30  #Tiempo que tarda en descargarse el archivo en tu red
     estatal = True    #Poner como true si quieres datos estatales; como false si quieres clues pero aún no funciona el false
     
