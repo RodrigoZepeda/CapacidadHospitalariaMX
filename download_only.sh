@@ -1,7 +1,6 @@
 #ORCHESTRATE
 #-----------------------------
-#File for downloading info from the IRAG website, creating the R database
-#and running the STAN model until uploading the info to github
+#File for downloading 
 #Author: Rodrigo Zepeda
 #Contact: rzepeda17[at]gmail.com
 #----------------------------------------
