@@ -1,0 +1,49 @@
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /home/rodrigo/miniconda3/envs/scipy
+
+  added / updated specs:
+    - scipy
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    certifi-2021.10.8          |  py310hff52083_1         145 KB  conda-forge
+    libgfortran-ng-7.5.0       |      h14aa051_20          23 KB  conda-forge
+    mkl-service-2.4.0          |  py310h7f8727e_0         177 KB
+    python_abi-3.10            |          2_cp310           4 KB  conda-forge
+    scipy-1.7.3                |  py310hfa59a62_0        43.6 MB
+    ------------------------------------------------------------
+                                           Total:        43.9 MB
+
+The following NEW packages will be INSTALLED:
+
+  blas               pkgs/main/linux-64::blas-1.0-mkl
+  intel-openmp       pkgs/main/linux-64::intel-openmp-2021.4.0-h06a4308_3561
+  libgfortran-ng     conda-forge/linux-64::libgfortran-ng-7.5.0-h14aa051_20
+  libgfortran4       conda-forge/linux-64::libgfortran4-7.5.0-h14aa051_20
+  mkl                pkgs/main/linux-64::mkl-2021.4.0-h06a4308_640
+  mkl-service        pkgs/main/linux-64::mkl-service-2.4.0-py310h7f8727e_0
+  mkl_fft            pkgs/main/linux-64::mkl_fft-1.3.1-py310hd6ae3a3_0
+  mkl_random         pkgs/main/linux-64::mkl_random-1.2.2-py310h00e6091_0
+  numpy              pkgs/main/linux-64::numpy-1.21.2-py310h20f2e39_0
+  numpy-base         pkgs/main/linux-64::numpy-base-1.21.2-py310h79a1101_0
+  python_abi         conda-forge/linux-64::python_abi-3.10-2_cp310
+  scipy              pkgs/main/linux-64::scipy-1.7.3-py310hfa59a62_0
+  six                conda-forge/noarch::six-1.16.0-pyh6c4a22f_0
+
+The following packages will be UPDATED:
+
+  certifi            pkgs/main/noarch::certifi-2020.6.20-p~ --> conda-forge/linux-64::certifi-2021.10.8-py310hff52083_1
+
+The following packages will be SUPERSEDED by a higher-priority channel:
+
+  ca-certificates    pkgs/main::ca-certificates-2022.2.1-h~ --> conda-forge::ca-certificates-2021.10.8-ha878542_0
+
+
+Proceed ([y]/n)? 
