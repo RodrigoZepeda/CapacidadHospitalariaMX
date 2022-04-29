@@ -69,3 +69,6 @@ for (tipo in c("estatal","unidad_medica")){
   datos %>% distinct() %>%
     write_csv(paste0("processed/HospitalizacionesMX_",tipo,".csv"))
 }
+
+#Script para subirlo a OSF
+source("scripts/upload_osf.R")
