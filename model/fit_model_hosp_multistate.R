@@ -167,7 +167,7 @@ all_states <- ggplot(Hosp, aes(x = Fecha)) +
                                "99%" = "#222D39")) +
   labs(
     x = "\nFecha",
-    y = "Capacidad Hospitalaria (%)\n",
+    y = "Ocupación Hospitalaria (%)\n",
     title = "Escenarios a largo plazo capacidad hospitalaria a partir de la RED-IRAG",
     caption = "*Predicciones después de 30 días (línea vertical) son sólo escenarios",
     subtitle = "Modelo Beta-Bayesiano | Github: @CapacidadHospitalariaMX | Datos de https://www.gits.igg.unam.mx/red-irag-dashboard"
@@ -223,7 +223,7 @@ for (estado in unique(Hosp$Estado)){
                                  "99%" = "#222D39")) +
     labs(
       x = "\nFecha",
-      y = "Capacidad Hospitalaria (%)\n",
+      y = "Ocupación Hospitalaria (%)\n",
       title = "Escenarios a largo plazo capacidad hospitalaria a partir de la RED-IRAG",
       subtitle = "Modelo Beta-Bayesiano | Github: @CapacidadHospitalariaMX | Datos de https://www.gits.igg.unam.mx/red-irag-dashboard"
     ) +
