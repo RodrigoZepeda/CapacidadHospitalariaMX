@@ -7,10 +7,12 @@
 Para ir al sitio web: [https://rodrigozepeda.github.io/CapacidadHospitalariaMX](https://rodrigozepeda.github.io/CapacidadHospitalariaMX/index)
 
 ## Información
+
 El presente repositorio contiene los datos de capacidad hospitalaria divulgados por la Secretaría de Salud a través del portal de la UNAM
 [https://www.gits.igg.unam.mx/red-irag-dashboard/reviewHome#](https://www.gits.igg.unam.mx/red-irag-dashboard/reviewHome#)
 
 ## Datos
+
 Los datos descargados sin procesar están en la carpeta [`raw/`](https://github.com/RodrigoZepeda/CapacidadHospitalariaMX/tree/master/data) mientras que la base de datos única procesada está en [`processed/HospitalizacionesMX_estatal.rds`](https://github.com/RodrigoZepeda/CapacidadHospitalariaMX/tree/master/processed/HospitalizacionesMX_estatal.rds)
 
 
