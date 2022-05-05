@@ -70,3 +70,5 @@ for (tipo in c("estatal","unidad_medica")){
   datos %>% distinct() %>%
     write_csv(paste0("processed/HospitalizacionesMX_",tipo,".csv"))
 }
+
+source("scripts/grafica_ocupacion.R")

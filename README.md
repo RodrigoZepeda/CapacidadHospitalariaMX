@@ -1,8 +1,8 @@
 # CapacidadHospitalariaMX
 
-> **Nota** a partir del 25 de febrero del 2022 los datos se actualizan diario a las 3am.
+> **Nota** a partir del 5 de mayo del 2022 los datos se actualizan diario a las 7am. Esto aunque desde el 25 de febrero del 2022 los datos se actualizaban a las 3am eventualmente la UNAM comenzó a subirlos más tarde.
 
-![Capacidad Hospitalaria MX](docs/images/CapacidadHospitalariaLogoDark.png)
+![Capacidad Hospitalaria MX](docs/images/Ocupacion_hospitalaria.png)
 
 Para ir al sitio web: [https://rodrigozepeda.github.io/CapacidadHospitalariaMX](https://rodrigozepeda.github.io/CapacidadHospitalariaMX/index)
 
@@ -76,6 +76,10 @@ env | grep 'DISPLAY'
 ## Limpieza de datos
 
 El archivo `scripts/genera_base_unica.R` se encarga de generar una única base en `.rds` con la información completa. 
+
+## Gráfica
+El archivo `scripts/grafica_ocupacion.R` se encarga de generar la gráfica diaria de ocupación.
+
 
 ## Generación del modelo
 
