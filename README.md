@@ -1,5 +1,8 @@
 # CapacidadHospitalariaMX
 
+**Actualización 29-Abril-2022**
+Para evitar que eventualmente quiten los vínculos a las bases éstas se encuentran ya publicadas con el siguiente DOI [10.17605/OSF.IO/9NU2D](https://osf.io/9nu2d/)
+
 > **Nota** a partir del 5 de mayo del 2022 los datos se actualizan diario a las 7am. Esto aunque desde el 25 de febrero del 2022 los datos se actualizaban a las 3am eventualmente la UNAM comenzó a subirlos más tarde.
 
 ![Capacidad Hospitalaria MX](docs/images/Ocupacion_hospitalaria.png)
@@ -13,8 +16,7 @@ El presente repositorio contiene los datos de capacidad hospitalaria divulgados 
 
 ## Datos
 
-Los datos descargados sin procesar están en la carpeta [`raw/`](https://github.com/RodrigoZepeda/CapacidadHospitalariaMX/tree/master/data) mientras que la base de datos única procesada está en [`processed/HospitalizacionesMX_estatal.rds`](https://github.com/RodrigoZepeda/CapacidadHospitalariaMX/tree/master/processed/HospitalizacionesMX_estatal.rds)
-
+Los datos puedes encontrarlos con el siguiente DOI:  [10.17605/OSF.IO/9NU2D](https://osf.io/9nu2d/). En dicho repositorio los datos descargados sin procesar están en la carpeta [`estatal/`] o [`unidad_medica`] según desees los datos desagregados por unidad o sólo por entidad. Se han procesado las bases pegando todas las fechas en [`procesadas`] para generar una única base de estados y una única de unidades. Te sugiero usar esas.  
 
 ## Apariciones
 
@@ -95,3 +97,5 @@ El sitio del modelo está dentro de [`docs`]. Siéntete en libertad de ayudarnos
 ## ¡Colabora!
 
 Ve las [guías de colaboración](https://github.com/RodrigoZepeda/CapacidadHospitalariaMX/blob/master/Contributing.md). Una buena idea del modelo es checar los issues y ver cuáles se sugieren como `commits` iniciales. 
+
+**Nota** Disculpa si no tengo mucho tiempo para esto. Lo mantengo lo mejor que puedo. 
