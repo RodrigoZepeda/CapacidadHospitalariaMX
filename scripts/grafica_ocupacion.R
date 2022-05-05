@@ -17,7 +17,7 @@ read_csv("processed/HospitalizacionesMX_estatal.csv",
   ggplot() +
   geom_ribbon(aes(x = Fecha, ymin = 0, ymax = `Smooth`/100), fill = "#de6600",
               color = "black", size = 0.5) +
-  facet_wrap(~Estado, ncol = 8) +
+  facet_wrap(~Estado, ncol = 4) +
   labs(
     y = "<span style = 'color:#de6600;'>Ocupación</span> de la Red IRAG",
     x = "",
@@ -44,5 +44,5 @@ read_csv("processed/HospitalizacionesMX_estatal.csv",
         axis.text        = element_text(color = "black"),
         axis.text.x      = element_text(angle = 90, size = 7, hjust = 1),
         panel.border     = element_rect(color = "black", fill = NA, size = 1))
-ggsave("docs/images/Ocupacion_hospitalaria.png", width = 14, height = 7, bg = "white", dpi = 750)
-ggsave("docs/images/Ocupacion_hospitalaria.pdf", width = 14, height = 7)
+ggsave("docs/images/Ocupacion_hospitalaria.png", width = 9, height = 14, bg = "white", dpi = 750)
+ggsave("docs/images/Ocupacion_hospitalaria.pdf", width = 9, height = 14)
