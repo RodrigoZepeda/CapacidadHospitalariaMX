@@ -45,3 +45,4 @@ read_csv("processed/HospitalizacionesMX_estatal.csv",
         axis.text.x      = element_text(angle = 90, size = 7, hjust = 1),
         panel.border     = element_rect(color = "black", fill = NA, size = 1))
 ggsave("docs/images/Ocupacion_hospitalaria.png", width = 14, height = 7, bg = "white", dpi = 750)
+ggsave("docs/images/Ocupacion_hospitalaria.pdf", width = 14, height = 7)
