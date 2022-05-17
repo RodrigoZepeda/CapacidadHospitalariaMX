@@ -19,23 +19,22 @@ read_csv("processed/HospitalizacionesMX_estatal.csv",
               color = "black", size = 0.5) +
   facet_wrap(~Estado, ncol = 4) +
   labs(
-    y = "<span style = 'color:#de6600;'>Ocupación</span> de la Red IRAG",
+    y = "",
     x = "",
-    title    = glue("Porcentaje de ",
-                    "<span style = 'color:#de6600;'>ocupación</span>", 
-                    " de la Red de Infecciones Respiratorias Agudas Graves de México (IRAG)"),
+    title    = glue("<br><span style = 'color:#de6600;'>Ocupación Hospitalaria</span>", 
+                    "<span style = 'color:#007a7a;'> en la Red IRAG</span>"),
     caption  = glue("Zepeda-Tello, Rodrigo. Repositorio de datos de COVID-19 en México.",
                     "Open Science Framework. DOI 10.17605/OSF.IO/9NU2D"),
-    subtitle = glue("<span style = 'color:#007a7a;'>Sistema de Información de la Red IRAG ",
-                    "(actualizado el {today()})</span>")
+    subtitle = glue("Sistema de Información de la Red IRAG ",
+                    "(actualizado el {today()})")
   ) +
   theme_minimal() +
   scale_y_continuous(labels = scales::percent, limits = c(0,1), expand = c(0,0)) +
   scale_x_date(expand = c(0,0), date_labels = "%b-%y", date_breaks = "4 months") +
   theme(legend.position  = "top",
         #text = element_text(family = "Times", color = "black"),
-        plot.title       = element_markdown(),
-        plot.subtitle    = element_markdown(face = "italic"),
+        plot.title       = element_markdown(size = 25, family = "Helvetica"),
+        plot.subtitle    = element_markdown(face = "italic", family = "Helvetica"),
         panel.spacing    = unit(1, "lines"),
         panel.grid       = element_blank(),
         axis.title.y     = element_markdown(color = "black"),
@@ -44,5 +43,5 @@ read_csv("processed/HospitalizacionesMX_estatal.csv",
         axis.text        = element_text(color = "black"),
         axis.text.x      = element_text(angle = 90, size = 7, hjust = 1),
         panel.border     = element_rect(color = "black", fill = NA, size = 1))
-ggsave("docs/images/Ocupacion_hospitalaria.png", width = 9, height = 14, bg = "white", dpi = 750)
-ggsave("docs/images/Ocupacion_hospitalaria.pdf", width = 9, height = 14)
+ggsave("docs/images/Ocupacion_hospitalaria.png", width = 10, height = 14, bg = "white", dpi = 750)
+ggsave("docs/images/Ocupacion_hospitalaria.pdf", width = 10, height = 14)
