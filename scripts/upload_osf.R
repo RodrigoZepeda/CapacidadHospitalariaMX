@@ -42,7 +42,6 @@ for (fname in c(estatal, unidad, procesada)){
     
     message(glue("Uploading {fname}"))
     
-    
     if (fname %in% estatal){
       #Upload file to estatal
       covid_project %>%
@@ -62,5 +61,13 @@ for (fname in c(estatal, unidad, procesada)){
     
     message(glue("Success!"))
     
+  } else if (str_detect(fname,"processed")){
+    
+    message(glue("Uploading {fname}"))
+    
+    covid_project %>%
+      osf_upload(path = fname, conflicts = "overwrite") %>% 
+      osf_mv(procesada_address)
+     
   }
 }
