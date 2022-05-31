@@ -11,6 +11,7 @@ import pandas as pd
 import os
 from sys import argv
 from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.select import Select
 import time
 from datetime import date, timedelta
@@ -98,56 +99,62 @@ if datetime.strptime(descargar_desde,'%Y-%m-%d') <= datetime.strptime(descargar_
         time.sleep(sleep_time)
             
         select = Select(browser.find_element_by_id("dateSelected"))
-        select.select_by_visible_text(fecha_analisis)
-        time.sleep(download_time)
-    
+
+        try:
+            select.select_by_visible_text(fecha_analisis)
+            time.sleep(download_time)
+            text_found = True
+        except NoSuchElementException:
+            print("No se encontraron datos para " + fecha_analisis)
+            text_found = False
+        finally:
     
         # --------------------------------
         # HOSPITALIZACIONES
         # --------------------------------
-        
-        hospital.click()
-        time.sleep(sleep_time)
-        
-        #Cambiar el formato a estatal
-        browser.find_element_by_xpath("/html/body/section/section[2]/div[2]/section/article[2]/article/div[1]/nav/ul/li[4]/a").click()
-        time.sleep(sleep_time) 
-        browser.find_element_by_xpath("/html/body/section/section[2]/div[2]/section/article[2]/article/div[1]/div/div[5]/div/div[1]/button[1]/span").click()
-            
-        
-        newname = "Hospitalizaciones_" + fecha_analisis + ".csv"   #Segun yo no importa que el nombre se quede igual por las carpetas
-        time.sleep(download_time)
-        os.rename(os.path.join(folder_of_download, "Sistema de Información de la Red IRAG.csv"), os.path.join(folder_of_download, newname))
-        
-        # --------------------------------
-        # VENTILADORES
-        # --------------------------------
-        
-        ventilador.click()
-        time.sleep(sleep_time)
-    
-        browser.find_element_by_xpath("/html/body/section/section[2]/div[2]/section/article[2]/article/div[1]/nav/ul/li[4]/a").click()
-        time.sleep(sleep_time)
-        browser.find_element_by_xpath("/html/body/section/section[2]/div[2]/section/article[2]/article/div[1]/div/div[5]/div/div[1]/button[1]/span").click()
+            if text_found:
+                hospital.click()
+                time.sleep(sleep_time)
 
-        newname = "Ventiladores_" + fecha_analisis + ".csv"
-        time.sleep(download_time)
-        os.rename(os.path.join(folder_of_download, "Sistema de Información de la Red IRAG.csv"), os.path.join(folder_of_download, newname))
-        
-        # --------------------------------
-        # UCI
-        # --------------------------------
-        
-        uci.click()
-        time.sleep(sleep_time)
-        
-        browser.find_element_by_xpath("/html/body/section/section[2]/div[2]/section/article[2]/article/div[1]/nav/ul/li[4]/a").click()
-        time.sleep(sleep_time)
-        browser.find_element_by_xpath("/html/body/section/section[2]/div[2]/section/article[2]/article/div[1]/div/div[5]/div/div[1]/button[1]/span").click()   
-        
-        newname = "UCI_" + fecha_analisis + ".csv"
-        time.sleep(download_time)
-        os.rename(os.path.join(folder_of_download, "Sistema de Información de la Red IRAG.csv"), os.path.join(folder_of_download, newname))
+                #Cambiar el formato a estatal
+                browser.find_element_by_xpath("/html/body/section/section[2]/div[2]/section/article[2]/article/div[1]/nav/ul/li[4]/a").click()
+                time.sleep(sleep_time)
+                browser.find_element_by_xpath("/html/body/section/section[2]/div[2]/section/article[2]/article/div[1]/div/div[5]/div/div[1]/button[1]/span").click()
+
+
+                newname = "Hospitalizaciones_" + fecha_analisis + ".csv"   #Segun yo no importa que el nombre se quede igual por las carpetas
+                time.sleep(download_time)
+                os.rename(os.path.join(folder_of_download, "Sistema de Información de la Red IRAG.csv"), os.path.join(folder_of_download, newname))
+
+                # --------------------------------
+                # VENTILADORES
+                # --------------------------------
+
+                ventilador.click()
+                time.sleep(sleep_time)
+
+                browser.find_element_by_xpath("/html/body/section/section[2]/div[2]/section/article[2]/article/div[1]/nav/ul/li[4]/a").click()
+                time.sleep(sleep_time)
+                browser.find_element_by_xpath("/html/body/section/section[2]/div[2]/section/article[2]/article/div[1]/div/div[5]/div/div[1]/button[1]/span").click()
+
+                newname = "Ventiladores_" + fecha_analisis + ".csv"
+                time.sleep(download_time)
+                os.rename(os.path.join(folder_of_download, "Sistema de Información de la Red IRAG.csv"), os.path.join(folder_of_download, newname))
+
+                # --------------------------------
+                # UCI
+                # --------------------------------
+
+                uci.click()
+                time.sleep(sleep_time)
+
+                browser.find_element_by_xpath("/html/body/section/section[2]/div[2]/section/article[2]/article/div[1]/nav/ul/li[4]/a").click()
+                time.sleep(sleep_time)
+                browser.find_element_by_xpath("/html/body/section/section[2]/div[2]/section/article[2]/article/div[1]/div/div[5]/div/div[1]/button[1]/span").click()
+
+                newname = "UCI_" + fecha_analisis + ".csv"
+                time.sleep(download_time)
+                os.rename(os.path.join(folder_of_download, "Sistema de Información de la Red IRAG.csv"), os.path.join(folder_of_download, newname))
             
     browser.close()
 else:

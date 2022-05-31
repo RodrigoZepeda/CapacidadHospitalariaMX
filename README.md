@@ -18,6 +18,10 @@ El presente repositorio contiene los datos de capacidad hospitalaria divulgados 
 
 Los datos puedes encontrarlos con el siguiente DOI:  [10.17605/OSF.IO/9NU2D](https://osf.io/9nu2d/). En dicho repositorio los datos descargados sin procesar están en la carpeta [`estatal/`] o [`unidad_medica`] según desees los datos desagregados por unidad o sólo por entidad. Se han procesado las bases pegando todas las fechas en [`procesadas`] para generar una única base de estados y una única de unidades. Te sugiero usar esas.  
 
+### Datos faltantes 
+
+La información del `2022-05-21` y `2022-05-22` no está disponible en la página de la UNAM y por tanto no está disponible aquí. 
+
 ## Apariciones
 
 Se han usado en [Serendipia](https://serendipia.digital/covid-19/ocupacion-hospitalaria-en-mexico-5-entidades-superan-80/). 
