@@ -27,7 +27,7 @@ for (tipo in c("estatal","unidad_medica")){
     common_vars = c("Estado")
     colspecs = cols(
       Estado           = col_character(),
-      `% Ocupación` = col_double()
+      `% Ocupación`    = col_double()
     )
   }
   
