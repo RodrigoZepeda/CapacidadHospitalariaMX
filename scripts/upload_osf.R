@@ -67,7 +67,7 @@ for (fname in c(estatal, unidad, procesada)){
     
     covid_project %>%
       osf_upload(path = fname, conflicts = "overwrite") %>% 
-      osf_mv(procesada_address)
+      osf_mv(procesada_address, overwrite = T)
      
   }
 }
