@@ -70,8 +70,9 @@ for (tipo in c("estatal","unidad_medica")){
     write_csv(paste0("processed/HospitalizacionesMX_",tipo,".csv"))
 }
 
-#Script para subirlo a OSF
-source("scripts/upload_osf.R")
 
 #Script para graficas
 source("scripts/grafica_ocupacion.R")
+
+#Script para subirlo a OSF
+source("scripts/upload_osf.R")

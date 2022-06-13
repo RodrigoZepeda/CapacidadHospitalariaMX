@@ -46,17 +46,17 @@ for (fname in c(estatal, unidad, procesada)){
       #Upload file to estatal
       covid_project %>%
         osf_upload(path = fname, conflicts = "skip") %>% 
-        osf_mv(estatal_address)
+        osf_mv(estatal_address,  overwrite  = TRUE)
     } else if (fname %in% unidad) {
       #Upload file to unidad
       covid_project %>%
         osf_upload(path = fname, conflicts = "skip") %>% 
-        osf_mv(unidad_address)
+        osf_mv(unidad_address,  overwrite  = TRUE)
     } else {
       #Upload file to processed
       covid_project %>%
         osf_upload(path = fname, conflicts = "overwrite") %>% 
-        osf_mv(procesada_address)
+        osf_mv(procesada_address,  overwrite  = TRUE)
     }
     
     message(glue("Success!"))
