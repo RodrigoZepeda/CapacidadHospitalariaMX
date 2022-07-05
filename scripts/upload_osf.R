@@ -39,7 +39,7 @@ unidad_address <- covid_project %>%
 
 for (fname in c(estatal, unidad, procesada)){
   if (!(basename(fname) %in% osfiles$name)){
-    stop(fname)
+    
     message(glue("Uploading {fname}"))
     
     if (fname %in% estatal){
