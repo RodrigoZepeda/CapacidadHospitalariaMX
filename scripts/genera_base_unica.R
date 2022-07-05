@@ -63,6 +63,10 @@ for (tipo in c("estatal","unidad_medica")){
     
   }
   
+  #Agregamos fecha de actualizacion
+  datos <- datos %>%
+    mutate(`Actualizacion` = Sys.time()) 
+  
   datos %>% distinct() %>%
     write_rds(paste0("processed/HospitalizacionesMX_",tipo,".rds"))
   

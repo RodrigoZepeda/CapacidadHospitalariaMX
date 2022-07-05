@@ -16,7 +16,7 @@ read_csv("processed/HospitalizacionesMX_estatal.csv",
                           "Veracruz de\nIgnacio de la Llave", Estado)) %>%
   ggplot() +
   geom_ribbon(aes(x = Fecha, ymin = 0, ymax = `Smooth`/100), fill = "#de6600",
-              color = "black", size = 0.5) +
+              color = "black", linewidth = 0.5) +
   facet_wrap(~Estado, ncol = 4) +
   labs(
     y = "",
