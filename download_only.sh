@@ -5,7 +5,7 @@
 #Contact: rzepeda17[at]gmail.com
 #----------------------------------------
 . ~/.keychain/`/bin/hostname`-sh
-cd /home/rodrigo/CapacidadHospitalariaMX
+cd /media/rodrigo/covid/CapacidadHospitalariaMX
 date=$(date '+%Y-%m-%d')
 /home/rodrigo/miniconda3/envs/CapacidadHospitalaria/bin/python3 /media/rodrigo/covid/CapacidadHospitalariaMX/scripts/descarga_estatal.py
 /home/rodrigo/miniconda3/envs/CapacidadHospitalaria/bin/python3 /media/rodrigo/covid/CapacidadHospitalariaMX/scripts/descarga_municipal.py
