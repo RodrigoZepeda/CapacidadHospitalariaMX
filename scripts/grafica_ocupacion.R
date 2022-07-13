@@ -24,13 +24,14 @@ read_csv("processed/HospitalizacionesMX_estatal.csv",
     title    = glue("<br><span style = 'color:#de6600;'>Ocupación Hospitalaria</span>", 
                     "<span style = 'color:#007a7a;'> en la Red IRAG</span>"),
     caption  = glue("Zepeda-Tello, Rodrigo. Repositorio de datos de COVID-19 en México.",
-                    "Open Science Framework. DOI 10.17605/OSF.IO/9NU2D"),
+                    "Open Science Framework. DOI 10.17605/OSF.IO/9NU2D<br>",
+                    "**Github** RodrigoZepeda/CapacidadHospitalaria"),
     subtitle = glue("Sistema de Información de la Red IRAG ",
                     "(actualizado el {today()})")
   ) +
   theme_minimal() +
   scale_y_continuous(labels = scales::percent, limits = c(0,1), expand = c(0,0)) +
-  scale_x_date(expand = c(0,0), date_labels = "%b-%y", date_breaks = "4 months") +
+  scale_x_date(expand = c(0,0), date_labels = "%b-%y", date_breaks = "1 month") +
   theme(legend.position  = "top",
         #text = element_text(family = "Times", color = "black"),
         plot.title       = element_markdown(size = 25, family = "Helvetica"),
@@ -42,6 +43,7 @@ read_csv("processed/HospitalizacionesMX_estatal.csv",
         plot.background  = element_rect(fill = alpha("#ebd9c8", 0.1)),
         axis.text        = element_text(color = "black"),
         axis.text.x      = element_text(angle = 90, size = 7, hjust = 1),
-        panel.border     = element_rect(color = "black", fill = NA, size = 1))
+        panel.border     = element_rect(color = "black", fill = NA, size = 1)) +
+  coord_cartesian(xlim = c(today() - years(1), today()))
 ggsave("docs/images/Ocupacion_hospitalaria.png", width = 10, height = 14, bg = "white", dpi = 750)
 ggsave("docs/images/Ocupacion_hospitalaria.pdf", width = 10, height = 14)
