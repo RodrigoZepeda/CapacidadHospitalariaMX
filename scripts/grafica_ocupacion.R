@@ -8,6 +8,9 @@ read_csv("processed/HospitalizacionesMX_estatal.csv",
                values_to = "Ocupación (%)") %>%
   arrange(Fecha, Estado, `Tipo de pacientes`) %>%
   group_by(Estado, `Tipo de pacientes`) %>%
+  mutate(`Ocupación (%)` = 
+           if_else(`Ocupación (%)` < 0 | `Ocupación (%)` > 100, NA_real_, `Ocupación (%)`)) %>%
+  mutate(`Ocupación (%)` = na.fill(`Ocupación (%)`, "extend")) %>%
   mutate(Smooth = rollmean(
     rollmean(`Ocupación (%)`, 7, fill = 0, align = "right"), 
     7, fill = 0, align = "right")) %>%
@@ -44,7 +47,7 @@ read_csv("processed/HospitalizacionesMX_estatal.csv",
         plot.background  = element_rect(fill = alpha("#ebd9c8", 0.1)),
         axis.text        = element_text(color = "black"),
         axis.text.x      = element_text(angle = 90, size = 7, hjust = 1),
-        panel.border     = element_rect(color = "black", fill = NA, size = 1)) +
+        panel.border     = element_rect(color = "black", fill = NA, linewidth = 1)) +
   coord_cartesian(xlim = c(today() - years(1), today()))
 ggsave("docs/images/Ocupacion_hospitalaria.png", width = 10, height = 14, bg = "white", dpi = 750)
 ggsave("docs/images/Ocupacion_hospitalaria.pdf", width = 10, height = 14)
