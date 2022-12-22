@@ -6,18 +6,18 @@
 #Contact: rzepeda17[at]gmail.com
 #----------------------------------------
 date=$(date '+%Y-%m-%d')
-python3 scripts/descarga_estatal.py
-python3 scripts/descarga_municipal.py
-Rscript scripts/genera_base_unica.R
-git add .
-git commit -m "Se actualizadon datos hasta ${date}"
-git push origin master
-Rscript model/fit_model_hosp_multistate.R
+/home/rod/miniconda3/envs/CapacidadHospitalariaMx/bin/python3 scripts/descarga_estatal.py
+/home/rod/miniconda3/envs/CapacidadHospitalariaMx/bin/python3 scripts/descarga_municipal.py
+/usr/bin/Rscript scripts/genera_base_unica.R
+/usr/bin/git add .
+/usr/bin/git commit -m "Se actualizadon datos hasta ${date}"
+/usr/bin/git push origin master
+/usr/bin/Rscript model/fit_model_hosp_multistate.R
 cd predictions
-gs -q -dNOPAUSE  -dBATCH -dAutoRotatePages=/None -dSAFER -sDEVICE=pdfwrite -sOutputFile=PREDICCIONES_HOSP.pdf *.pdf
+/usr/bin/gs -q -dNOPAUSE  -dBATCH -dAutoRotatePages=/None -dSAFER -sDEVICE=pdfwrite -sOutputFile=PREDICCIONES_HOSP.pdf *.pdf
 rm Hosp*.pdf
 cd .. 
 yes | cp predictions/Predichos.csv docs/data/Predichos.csv
-git add .
-git commit -m "Se actualizadon predicciones hasta ${date}"
-git push origin master
+/usr/bin/git add .
+/usr/bin/git commit -m "Se actualizadon predicciones hasta ${date}"
+/usr/bin/git push origin master
