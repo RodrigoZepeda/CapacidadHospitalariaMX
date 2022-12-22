@@ -5,7 +5,7 @@
 #Contact: rzepeda17[at]gmail.com
 #----------------------------------------
 #. ~/.keychain/`/bin/hostname`-sh
-#cd /home/rod/CapacidadHospitalariaMX
+cd /home/rod/CapacidadHospitalariaMX
 #date=$(date '+%Y-%m-%d')
 #/home/rod/miniconda3/envs/CapacidadHospitalariaMx/bin/python3 /home/rod/CapacidadHospitalariaMX/scripts/descarga_estatal.py
 #/home/rod/miniconda3/envs/CapacidadHospitalariaMx/bin/python3 /home/rod/CapacidadHospitalariaMX/scripts/descarga_municipal.py
