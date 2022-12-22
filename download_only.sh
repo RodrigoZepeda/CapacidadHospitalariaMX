@@ -5,6 +5,7 @@
 #Contact: rzepeda17[at]gmail.com
 #----------------------------------------
 #. ~/.keychain/`/bin/hostname`-sh
+eval `ssh-agent -s` && ssh-add ~/.ssh/github && ssh-add -l
 cd /home/rod/CapacidadHospitalariaMX
 #date=$(date '+%Y-%m-%d')
 #/home/rod/miniconda3/envs/CapacidadHospitalariaMx/bin/python3 /home/rod/CapacidadHospitalariaMX/scripts/descarga_estatal.py
