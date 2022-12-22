@@ -71,7 +71,7 @@ if datetime.strptime(descargar_desde,'%Y-%m-%d') <= datetime.strptime(descargar_
     
     #Dar click en entrar
     time.sleep(sleep_time)
-    browser.find_element_by_id('enter-button').click()
+    browser.find_element('id','enter-button').click()
     
     #Fechas a descargar
     fechas_descargar = pd.date_range(start = descargar_desde, end = descargar_hasta, freq='D') 
@@ -81,10 +81,10 @@ if datetime.strptime(descargar_desde,'%Y-%m-%d') <= datetime.strptime(descargar_
     print("Tiempo estimado: " + str(len(fechas_descargar)*(sleep_time*4 + 4*download_time)/360) + " horas")
 
     # Elementos de resumen, ocupación general, camas y uci
-    resumen    = browser.find_element_by_xpath("/html/body/section/section[2]/div[1]/nav/ul/li[1]/a")
-    hospital   = browser.find_element_by_xpath("/html/body/section/section[2]/div[1]/nav/ul/li[5]/a")
-    ventilador = browser.find_element_by_xpath("/html/body/section/section[2]/div[1]/nav/ul/li[6]/a")
-    uci        = browser.find_element_by_xpath("/html/body/section/section[2]/div[1]/nav/ul/li[7]/a")
+    resumen    = browser.find_element('xpath',"/html/body/section/section[2]/div[1]/nav/ul/li[1]/a")
+    hospital   = browser.find_element('xpath',"/html/body/section/section[2]/div[1]/nav/ul/li[5]/a")
+    ventilador = browser.find_element('xpath',"/html/body/section/section[2]/div[1]/nav/ul/li[6]/a")
+    uci        = browser.find_element('xpath',"/html/body/section/section[2]/div[1]/nav/ul/li[7]/a")
     
     #Avance para cuantificar
     avance = 0
@@ -98,7 +98,7 @@ if datetime.strptime(descargar_desde,'%Y-%m-%d') <= datetime.strptime(descargar_
         resumen.click()
         time.sleep(sleep_time)
             
-        select = Select(browser.find_element_by_id("dateSelected"))
+        select = Select(browser.find_element('id',"dateSelected"))
 
         try:
             select.select_by_visible_text(fecha_analisis)
@@ -117,9 +117,9 @@ if datetime.strptime(descargar_desde,'%Y-%m-%d') <= datetime.strptime(descargar_
                 time.sleep(sleep_time)
 
                 #Cambiar el formato a estatal
-                browser.find_element_by_xpath("/html/body/section/section[2]/div[2]/section/article[2]/article/div[1]/nav/ul/li[4]/a").click()
+                browser.find_element('xpath',"/html/body/section/section[2]/div[2]/section/article[2]/article/div[1]/nav/ul/li[4]/a").click()
                 time.sleep(sleep_time)
-                browser.find_element_by_xpath("/html/body/section/section[2]/div[2]/section/article[2]/article/div[1]/div/div[5]/div/div[1]/button[1]/span").click()
+                browser.find_element('xpath',"/html/body/section/section[2]/div[2]/section/article[2]/article/div[1]/div/div[5]/div/div[1]/button[1]/span").click()
 
 
                 newname = "Hospitalizaciones_" + fecha_analisis + ".csv"   #Segun yo no importa que el nombre se quede igual por las carpetas
@@ -133,9 +133,9 @@ if datetime.strptime(descargar_desde,'%Y-%m-%d') <= datetime.strptime(descargar_
                 ventilador.click()
                 time.sleep(sleep_time)
 
-                browser.find_element_by_xpath("/html/body/section/section[2]/div[2]/section/article[2]/article/div[1]/nav/ul/li[4]/a").click()
+                browser.find_element('xpath',"/html/body/section/section[2]/div[2]/section/article[2]/article/div[1]/nav/ul/li[4]/a").click()
                 time.sleep(sleep_time)
-                browser.find_element_by_xpath("/html/body/section/section[2]/div[2]/section/article[2]/article/div[1]/div/div[5]/div/div[1]/button[1]/span").click()
+                browser.find_element('xpath',"/html/body/section/section[2]/div[2]/section/article[2]/article/div[1]/div/div[5]/div/div[1]/button[1]/span").click()
 
                 newname = "Ventiladores_" + fecha_analisis + ".csv"
                 time.sleep(download_time)
@@ -148,9 +148,9 @@ if datetime.strptime(descargar_desde,'%Y-%m-%d') <= datetime.strptime(descargar_
                 uci.click()
                 time.sleep(sleep_time)
 
-                browser.find_element_by_xpath("/html/body/section/section[2]/div[2]/section/article[2]/article/div[1]/nav/ul/li[4]/a").click()
+                browser.find_element('xpath',"/html/body/section/section[2]/div[2]/section/article[2]/article/div[1]/nav/ul/li[4]/a").click()
                 time.sleep(sleep_time)
-                browser.find_element_by_xpath("/html/body/section/section[2]/div[2]/section/article[2]/article/div[1]/div/div[5]/div/div[1]/button[1]/span").click()
+                browser.find_element('xpath',"/html/body/section/section[2]/div[2]/section/article[2]/article/div[1]/div/div[5]/div/div[1]/button[1]/span").click()
 
                 newname = "UCI_" + fecha_analisis + ".csv"
                 time.sleep(download_time)

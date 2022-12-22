@@ -10,7 +10,7 @@ date=$(date '+%Y-%m-%d')
 /home/rod/miniconda3/envs/CapacidadHospitalariaMx/bin/python3 scripts/descarga_municipal.py
 /usr/bin/Rscript scripts/genera_base_unica.R
 /usr/bin/git add .
-/usr/bin/git commit -m "Se actualizadon datos hasta ${date}"
+/usr/bin/git commit -m "Se actualizaron datos hasta ${date}"
 /usr/bin/git push origin master
 /usr/bin/Rscript model/fit_model_hosp_multistate.R
 cd predictions
@@ -19,5 +19,5 @@ rm Hosp*.pdf
 cd .. 
 yes | cp predictions/Predichos.csv docs/data/Predichos.csv
 /usr/bin/git add .
-/usr/bin/git commit -m "Se actualizadon predicciones hasta ${date}"
+/usr/bin/git commit -m "Se actualizaron predicciones hasta ${date}"
 /usr/bin/git push origin master
