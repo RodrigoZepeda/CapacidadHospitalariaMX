@@ -1,6 +1,6 @@
 # CapacidadHospitalariaMX
 
-
+:warning: La actualización de información se realiza a las 14 pm automáticamente. En caso de que no pase levanta un issue.
 
 ![Capacidad Hospitalaria MX](docs/images/Ocupacion_hospitalaria.png)
 
@@ -83,7 +83,7 @@ python3 scripts/descarga_estatal.py "2021-01-01"
 En Linux puedes usar un `crontab` como sigue:
 
 ```bash
-00 03 * * * export DISPLAY=:0 && /bin/sh /directorio/a/CapacidadHospitalariaMX/download_only.sh > /dev/null 2>&1
+00 15 * * * export DISPLAY=:0 && /bin/sh /directorio/a/CapacidadHospitalariaMX/download_only.sh > /dev/null 2>&1
 ```
 
 para saber qué número de display tienes:
