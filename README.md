@@ -1,6 +1,6 @@
 # CapacidadHospitalariaMX
 
-:warning: La actualización de información se realiza a las 14 pm automáticamente. En caso de que no pase levanta un issue.
+:warning: La actualización de información se realiza a las 3 am automáticamente. En caso de que no pase levanta un issue.
 
 ![Capacidad Hospitalaria MX](docs/images/Ocupacion_hospitalaria.png)
 
